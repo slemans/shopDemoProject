@@ -10,6 +10,7 @@ import Foundation
 protocol SingInNavigation: AnyObject {
 
     func goToLogInPage()
+    func goToPage1View()
 
 }
 
@@ -21,8 +22,12 @@ class SingInPageViewModel {
         self.navigation = nav
     }
 
-    func goToRegister() {
+    func goToLogIn() {
         navigation.goToLogInPage()
+    }
+    
+    func goToPage1() {
+        navigation.goToPage1View()
     }
 
 }

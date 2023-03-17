@@ -44,10 +44,13 @@ class ApplicationCoordinator: Coordinator {
 
 // MARK: - LogInNavigation
 
-extension ApplicationCoordinator: LogInNavigation, SingInNavigation {
+extension ApplicationCoordinator: LogInNavigation, SingInNavigation, Page1Navigation {
     
     func goToPage1View() {
-       
+        let page1ViewController = storyboard.instantiateViewController(withIdentifier: "Page1View") as! Page1ViewController
+        let page1ViewModel = Page1ViewModel.init(nav: self)
+        page1ViewController.viewModel = page1ViewModel
+        navigationController.pushViewController(page1ViewController, animated: true)
     }
     
     func goToLogInPage() {

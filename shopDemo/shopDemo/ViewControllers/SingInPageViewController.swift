@@ -24,14 +24,14 @@ class SingInPageViewController: UIViewController {
         .decorated(with: .text(Constants.titleLabel))
         .decorated(with: .font(.sf(.h1([.semibold]))))
         .decorated(with: .alignment(.center))
-    private let firstNameTextField = makeTextFieldMy(.firstName)
-    private let lastNameTextField = makeTextFieldMy(.lastName)
-    private let emailNameTextField = makeTextFieldMy(.email)
+    private let firstNameTextField = AuthTextField(ofType: .code, placeholder: LableTextField.firstName.rawValue)
+    private let lastNameTextField = AuthTextField(ofType: .code, placeholder: LableTextField.lastName.rawValue)
+    private let emailNameTextField = AuthTextField(ofType: .code, placeholder: LableTextField.email.rawValue)
     private let singInButton = UIButton()
         .decorated(with: .title(Constants.titleLabel))
         .decorated(with: .backgroundColor(.blue1))
         .decorated(with: .titleColor(.white))
-        .decorated(with: .font(.sf(.body([.bold]))))
+        .decorated(with: .font(.sf(.body([.semibold]))))
         .decorated(with: .cornerRadius(15))
     private let alreadyLabel = UILabel()
         .decorated(with: .textColor(.gray3))
@@ -60,6 +60,7 @@ class SingInPageViewController: UIViewController {
         setupLayout()
         setupButtons()
         setupTextField()
+        setupView()
     }
 
 }
@@ -67,12 +68,16 @@ class SingInPageViewController: UIViewController {
 // MARK: - Private functions
 
 private extension SingInPageViewController {
+    
+    func setupView() {
+        navigationController?.isNavigationBarHidden = true
+    }
 
     func setupLayout() {
         [titleLabel, firstNameTextField, lastNameTextField, emailNameTextField, singInButton, alreadyLabel, logInButton, googleImageView, googleLable, appleImageView, appleLable].forEach { view.addSubview($0) }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(125.93)
+            make.top.equalToSuperview().offset(158.71)
             make.centerX.equalToSuperview()
         }
         firstNameTextField.snp.makeConstraints { make in
@@ -122,34 +127,20 @@ private extension SingInPageViewController {
             make.top.equalTo(googleImageView.snp.bottom).offset(40.98)
         }
 
-
-    }
-
-    static func makeTextFieldMy(_ type: LableTextField) -> UITextField {
-        UITextField()
-            .decorated(with: .placeholder(type.rawValue))
-            .decorated(with: .tintColor(.gray2))
-            .decorated(with: .textColor(.gray2))
-            .decorated(with: .alignment(.center))
-            .decorated(with: .font(.sf(.footnote())))
-            .decorated(with: .backgroundColor(.gray1))
-            .decorated(with: .rounded(radius: 15))
     }
     
     func setupButtons() {
         singInButton.addAction(for: .touchUpInside) { [weak self] _ in
-            guard let self = self,
-                let name = self.firstNameTextField.text,
-                let lastName = self.lastNameTextField.text,
-                  let email = self.emailNameTextField.text
-                else { return }
+//            guard let self = self,
+//                let name = self.firstNameTextField.text,
+//                let lastName = self.lastNameTextField.text,
+//                  let email = self.emailNameTextField.text
+//                else { return }
             
-            print(name)
-            print(lastName)
-            print(email)
+            self?.viewModel.goToPage1()
         }
         logInButton.addAction(for: .touchUpInside) { [weak self] _ in
-            self?.viewModel.goToRegister()
+            self?.viewModel.goToLogIn()
         }
     }
     
@@ -164,7 +155,7 @@ private extension SingInPageViewController {
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        textField.text = ""
+        textField.text = .emptyLine
     }
 
 }

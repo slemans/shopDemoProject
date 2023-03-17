@@ -51,4 +51,26 @@ extension ViewDecorator where View: UIButton {
         }
     }
     
+    static func image(_ image: UIImage?,
+                      trailing: Bool = false,
+                      spacing: CGFloat? = nil,
+                      for state: UIControl.State = .normal) -> ViewDecorator<View> {
+        ViewDecorator {
+            $0.setImage(image, for: state)
+            
+            if trailing {
+                let transform = CGAffineTransform(scaleX: -1, y: 1)
+                
+                $0.transform = transform
+                $0.titleLabel?.transform = transform
+                $0.imageView?.transform = transform
+            }
+            
+            if let spacing = spacing {
+                $0.contentEdgeInsets = .insets(right: spacing)
+                $0.titleEdgeInsets = .insets(left: spacing, right: -spacing)
+            }
+        }
+    }
+    
 }

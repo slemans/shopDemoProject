@@ -9,7 +9,6 @@ import Foundation
 
 protocol LogInNavigation: AnyObject {
 
-    func goToSingInPage()
     func goToPage1View()
 
 }
@@ -20,6 +19,10 @@ class LoginViewModel {
 
     init(nav: LogInNavigation) {
         self.navigation = nav
+    }
+    
+    func goToPage1View(name: String, password: String) {
+        navigation.goToPage1View()
     }
     
 }

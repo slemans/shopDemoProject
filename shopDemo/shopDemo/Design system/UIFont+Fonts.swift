@@ -42,7 +42,7 @@ extension UIFont {
                 size = 17
                 inscriptions = lettering
             case .h1(let lettering):
-                size = 34
+                size = 30
                 inscriptions = lettering
             case .h2(let lettering):
                 size = 28

@@ -87,6 +87,18 @@ extension ViewDecorator where View: UITextField {
        }
    }
     
+    static func leftViewMode(_ leftViewMode: UITextField.ViewMode) -> ViewDecorator<View> {
+       ViewDecorator {
+           $0.leftViewMode = leftViewMode
+       }
+   }
+    
+    static func leftView(_ leftView: UIView) -> ViewDecorator<View> {
+        ViewDecorator {
+            $0.leftView = leftView
+        }
+    }
+    
     static func isSecureTextEntry(_ isSecureTextEntry: Bool) -> ViewDecorator<View> {
        ViewDecorator {
            $0.isSecureTextEntry = isSecureTextEntry
