@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
 private extension LoginViewController {
     
     func setupView() {
-        navigationController?.isNavigationBarHidden = true
+
     }
     
     func setupLayout() {

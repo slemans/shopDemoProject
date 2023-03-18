@@ -204,8 +204,8 @@
 			children = (
 				85BE801A29C3505800C94F8D /* SingInPageViewController.swift */,
 				85BE801C29C350C000C94F8D /* LoginViewController.swift */,
-				85BE802529C3535100C94F8D /* ProfileViewController.swift */,
 				85BE802929C353D200C94F8D /* Page1ViewController.swift */,
+				85BE802529C3535100C94F8D /* ProfileViewController.swift */,
 				85BE802B29C355B700C94F8D /* Page2ViewController.swift */,
 			);
 			path = ViewControllers;

@@ -70,7 +70,7 @@ class SingInPageViewController: UIViewController {
 private extension SingInPageViewController {
     
     func setupView() {
-        navigationController?.isNavigationBarHidden = true
+
     }
 
     func setupLayout() {
