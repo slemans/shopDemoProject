@@ -70,7 +70,7 @@ class SingInPageViewController: UIViewController {
 private extension SingInPageViewController {
     
     func setupView() {
-
+        view.backgroundColor = .mainColor
     }
 
     func setupLayout() {

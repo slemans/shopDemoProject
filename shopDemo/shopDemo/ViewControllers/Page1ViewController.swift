@@ -12,13 +12,16 @@ class Page1ViewController: UIViewController {
     
     var viewModel: Page1ViewModel!
     
+    let titleViewCustom = UIView()
     private let profileImageButton = UIButton()
         .decorated(with: .image(UIImage(named: "profile.pdf")))
 
     override func loadView() {
         super.loadView()
 
+        setupTitleView()
         setupView()
+        setupButtonAction()
     }
     
     override func viewDidLayoutSubviews() {
@@ -29,20 +32,30 @@ class Page1ViewController: UIViewController {
 }
 
 private extension Page1ViewController {
-    
+
     func setupView() {
+        view.backgroundColor = .mainColor
         let buttonLeft = UIButton()
             .decorated(with: .image(UIImage(named: "clip.pdf")))
         buttonLeft.heightAnchor.constraint(equalToConstant: 24).isActive = true
         buttonLeft.widthAnchor.constraint(equalToConstant: 22).isActive = true
         buttonLeft.contentHorizontalAlignment = .left
         
-        
-        profileImageButton.addAction(for: .touchUpInside) { _ in
-            print("tap")
-        }
-        
         profileImageButton.imageView?.contentMode = .scaleAspectFill
+        
+        navigationItem.titleView = titleViewCustom
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: buttonLeft)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: profileImageButton)
+    }
+    
+    func setupButtonAction() {
+        profileImageButton.addAction(for: .touchUpInside) { [weak self] _ in
+            self?.viewModel.goToProfile()
+        }
+    }
+    
+    func setupTitleView() {
+        let fullTitle = UIView()
         let leftPartTitle = UILabel()
             .decorated(with: .text("Trade by"))
             .decorated(with: .font(.sf(.h3([.bold]))))
@@ -50,28 +63,22 @@ private extension Page1ViewController {
             .decorated(with: .text("bata"))
             .decorated(with: .font(.sf(.h3([.bold]))))
             .decorated(with: .textColor(.blue2))
-        let mainView = UIView()
-        let fullTitle = UIView()
         fullTitle.addSubview(leftPartTitle)
         fullTitle.addSubview(rightPartTitle)
         leftPartTitle.snp.makeConstraints { make in
-            make.top.equalToSuperview()//.offset(8)
-            make.leading.equalToSuperview()
+            make.top.equalToSuperview().inset(-5)
+            make.leading.equalToSuperview().inset(-5)
         }
         rightPartTitle.snp.makeConstraints { make in
             make.top.equalTo(leftPartTitle.snp.top)
             make.leading.equalTo(leftPartTitle.snp.trailing).offset(5)
         }
-        mainView.addSubview(fullTitle)
+        titleViewCustom.addSubview(fullTitle)
         fullTitle.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(8)
+            make.centerX.centerY.equalToSuperview()
             make.width.equalTo(132)
+            make.height.equalTo(19)
         }
-        
-        navigationItem.titleView = mainView
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: buttonLeft)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: profileImageButton)
     }
     
 }
@@ -81,7 +88,7 @@ private extension Page1ViewController {
 private extension Page1ViewController {
     
     enum Constants {
-        static let titlePage = "Trade by data"
+       
     }
     
 }

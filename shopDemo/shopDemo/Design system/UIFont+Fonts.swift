@@ -28,6 +28,7 @@ extension UIFont {
         case body(Inscriptions? = nil)
         case footnote(Inscriptions? = nil)
         case caption10(Inscriptions? = nil)
+        case caption8(Inscriptions? = nil)
         case caption11(Inscriptions? = nil)
         case caption12(Inscriptions? = nil)
         case callout(Inscriptions? = nil)
@@ -61,6 +62,9 @@ extension UIFont {
                 inscriptions = lettering
             case .caption10(let lettering):
                 size = 10
+                inscriptions = lettering
+            case .caption8(let lettering):
+                size = 7
                 inscriptions = lettering
             case .caption11(let lettering):
                 size = 11
@@ -126,6 +130,7 @@ private extension UIFont {
              .h4(let inscriptions),
              .body(let inscriptions),
              .footnote(let inscriptions),
+             .caption8(let inscriptions),
              .caption10(let inscriptions),
              .caption11(let inscriptions),
              .caption12(let inscriptions),

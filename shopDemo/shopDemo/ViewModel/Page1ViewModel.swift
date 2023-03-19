@@ -9,6 +9,8 @@ import Foundation
 
 protocol Page1Navigation: AnyObject {
 
+    func goToProfilePage()
+    
 }
 
 class Page1ViewModel {
@@ -17,6 +19,10 @@ class Page1ViewModel {
 
     init(nav: Page1Navigation) {
         self.navigation = nav
+    }
+    
+    func goToProfile() {
+        navigation.goToProfilePage()
     }
     
 }
