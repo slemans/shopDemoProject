@@ -25,10 +25,15 @@ extension UIFont {
         case h2(Inscriptions? = nil)
         case h3(Inscriptions? = nil)
         case h4(Inscriptions? = nil)
+        case h5(Inscriptions? = nil)
         case body(Inscriptions? = nil)
         case footnote(Inscriptions? = nil)
         case caption10(Inscriptions? = nil)
+        case caption6poin5(Inscriptions? = nil)
+        case caption4poin5(Inscriptions? = nil)
+        case caption7(Inscriptions? = nil)
         case caption8(Inscriptions? = nil)
+        case caption9(Inscriptions? = nil)
         case caption11(Inscriptions? = nil)
         case caption12(Inscriptions? = nil)
         case callout(Inscriptions? = nil)
@@ -54,17 +59,32 @@ extension UIFont {
             case .h4(let lettering):
                 size = 20
                 inscriptions = lettering
+            case .h5(let lettering):
+                size = 19
+                inscriptions = lettering
             case .body(let lettering):
                 size = 17
                 inscriptions = lettering
             case .footnote(let lettering):
                 size = 13
                 inscriptions = lettering
+            case .caption4poin5(let lettering):
+                size = 4.5
+                inscriptions = lettering
             case .caption10(let lettering):
                 size = 10
                 inscriptions = lettering
-            case .caption8(let lettering):
+            case .caption7(let lettering):
                 size = 7
+                inscriptions = lettering
+            case .caption6poin5(let lettering):
+                size = 6.5
+                inscriptions = lettering
+            case .caption8(let lettering):
+                size = 8
+                inscriptions = lettering
+            case .caption9(let lettering):
+                size = 9
                 inscriptions = lettering
             case .caption11(let lettering):
                 size = 11
@@ -128,9 +148,14 @@ private extension UIFont {
              .h2(let inscriptions),
              .h3(let inscriptions),
              .h4(let inscriptions),
+             .h5(let inscriptions),
              .body(let inscriptions),
              .footnote(let inscriptions),
+             .caption6poin5(let inscriptions),
+             .caption4poin5(let inscriptions),
+             .caption7(let inscriptions),
              .caption8(let inscriptions),
+             .caption9(let inscriptions),
              .caption10(let inscriptions),
              .caption11(let inscriptions),
              .caption12(let inscriptions),

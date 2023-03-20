@@ -67,9 +67,6 @@ extension ApplicationCoordinator: LogInNavigation, SingInNavigation, Page1Naviga
     func goToPage1View() {
         self.tabBarController = makeTabBarController()
         
-        // удалить потом
-        self.tabBarController?.selectedIndex = 4
-        
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
     }
@@ -112,7 +109,7 @@ private extension ApplicationCoordinator {
             selectedImage: nil
         )
         
-        page1ViewController.tabBarItem.imageInsets = makeUIEdgeInsets(size: 5)
+        page1ViewController.tabBarItem.imageInsets = makeUIEdgeInsets(size: 6)
         
         let page1NavigationController = UINavigationController(rootViewController: page1ViewController)
         

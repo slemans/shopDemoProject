@@ -25,4 +25,8 @@ class Page1ViewModel {
         navigation.goToProfilePage()
     }
     
+    func sendTextTextField(text: String) {
+        
+    }
+    
 }

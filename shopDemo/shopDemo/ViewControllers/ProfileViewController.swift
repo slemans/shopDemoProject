@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
     private let imageProfile = UIImageView()
     private let titleLabel = UILabel()
         .decorated(with: .text(Constants.titleLabel))
-        .decorated(with: .font(.sf(.caption8())))
+        .decorated(with: .font(.sf(.caption7())))
         .decorated(with: .alignment(.center))
         .decorated(with: .textColor(.gray2))
     private let nameLabel = UILabel()

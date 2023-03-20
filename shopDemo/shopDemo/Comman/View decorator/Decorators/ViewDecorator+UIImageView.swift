@@ -21,4 +21,10 @@ extension ViewDecorator where View: UIImageView {
         }
     }
     
+    static func tinColor(_ mode: UIColor) -> ViewDecorator<View> {
+        ViewDecorator {
+            $0.tintColor = mode
+        }
+    }
+    
 }
