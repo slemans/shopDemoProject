@@ -7,7 +7,17 @@
 
 import UIKit
 
+protocol CollectionViewTwoPage1Delegate: AnyObject {
+    
+    func actionCollectionView(_ model: CollectionViewTwoPage1.Model)
+    
+}
+
 final class CollectionViewTwoPage1: UIView {
+    
+    // MARK: Delegate
+    
+    weak var delegate: CollectionViewTwoPage1Delegate?
     
     // MARK: - Private
     
@@ -88,6 +98,10 @@ extension CollectionViewTwoPage1: UICollectionViewDataSource, UICollectionViewDe
         let action = actions[indexPath.row]
         cell.setupCell(with: action)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.actionCollectionView(actions[indexPath.row])
     }
     
 }

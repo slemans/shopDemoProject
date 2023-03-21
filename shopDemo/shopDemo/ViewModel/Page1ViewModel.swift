@@ -10,6 +10,7 @@ import Foundation
 protocol Page1Navigation: AnyObject {
 
     func goToProfilePage()
+    func goToPage2()
     
 }
 
@@ -27,6 +28,10 @@ class Page1ViewModel {
     
     func sendTextTextField(text: String) {
         
+    }
+    
+    func openPage2() {
+        navigation.goToPage2()
     }
     
 }

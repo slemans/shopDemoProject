@@ -64,9 +64,8 @@ private extension CollectionViewTwoCellPage1 {
 
     func setupUI() {
         viewImage.layer.cornerRadius = 10
-        categoryView.backgroundColor = .white
+        categoryView.backgroundColor = .gray9
         categoryView.layer.cornerRadius = 6
-        categoryView.layer.opacity = 0.85
         viewImage.backgroundColor = .gray7
         viewImage.layer.opacity = 0.5
     }

@@ -41,8 +41,12 @@ class Page1ViewController: UIViewController {
         .decorated(with: .font(.sf(.caption11([.semibold]))))
         .decorated(with: .textColor(.gray4))
     private let brends = CollectionViewTwoPage1()
-    private let scrolleView = UIScrollView()
-
+    private let scrolleView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    private let contentView = UIView()
 
     override func loadView() {
         super.loadView()
@@ -62,16 +66,17 @@ private extension Page1ViewController {
 
     func setupView() {
         view.backgroundColor = .mainColor
-
         navigationItem.titleView = titleViewCustom
         navigationItem.leftBarButtonItem = makeUIBarButtonItemLeft()
         navigationItem.rightBarButtonItem = makeUIBarButtonItemRight()
         searchBar.delegat = self
+        latest.delegate = self
+        flash.delegate = self
     }
 
     func setupLayout() {
-        [locationView, searchBar, category, titleLatest, viewAll, latest, titleFlash, viewAllTwo, flash, brend, breanAllTwo, brends].forEach { view.addSubview($0) }
-
+        [locationView, searchBar, category, scrolleView].forEach { view.addSubview($0) }
+        
         locationView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(23)
             make.top.equalTo(view.safeAreaLayoutGuide).offset(0)
@@ -88,12 +93,29 @@ private extension Page1ViewController {
             make.trailing.leading.equalToSuperview().inset(15)
             make.height.equalTo(65)
         }
-        titleLatest.snp.makeConstraints { make in
+        scrolleView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(11)
             make.top.equalTo(category.snp.bottom).offset(34.5)
+            make.bottom.equalToSuperview()
+        }
+        setupLayoutScrollView()
+    }
+    
+    func setupLayoutScrollView() {
+        scrolleView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.edges.width.equalToSuperview()
+            make.height.equalTo(680)
+        }
+        
+        [titleLatest, viewAll, latest, titleFlash, viewAllTwo, flash, brend, breanAllTwo, brends].forEach { contentView.addSubview($0) }
+        
+        titleLatest.snp.makeConstraints { make in
+            make.top.equalToSuperview()
             make.leading.equalToSuperview().inset(11.55)
         }
         viewAll.snp.makeConstraints { make in
-            make.top.equalTo(category.snp.bottom).offset(36)
+            make.top.equalToSuperview().offset(2)
             make.trailing.equalToSuperview().inset(12.92)
         }
         latest.snp.makeConstraints { make in
@@ -129,7 +151,6 @@ private extension Page1ViewController {
             make.trailing.equalToSuperview()
             make.height.equalTo(150)
         }
-
     }
     
     func setupCollectionView() {
@@ -215,6 +236,7 @@ private extension Page1ViewController {
             )
         ]
         latest.setup(with: arrayColection)
+        brends.setup(with: arrayColection)
     }
     
     static func makeSearchView() -> UIView {
@@ -336,6 +358,24 @@ private extension Page1ViewController {
         return view
     }
 
+}
+
+// MARK: CollectionViewTwoPage1Delegate
+
+extension Page1ViewController: CollectionViewTwoPage1Delegate {
+    
+    func actionCollectionView(_ model: CollectionViewTwoPage1.Model) {
+        viewModel.openPage2()
+    }
+    
+}
+
+extension Page1ViewController: CollectionViewThreePage1Delegate {
+    
+    func actionCollectionTwoView(_ model: CollectionViewThreePage1.Model) {
+        viewModel.openPage2()
+    }
+    
 }
 
 extension Page1ViewController: SearchViewProtocol {

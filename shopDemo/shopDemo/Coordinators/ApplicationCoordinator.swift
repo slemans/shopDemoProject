@@ -44,6 +44,10 @@ final class ApplicationCoordinator {
 
 extension ApplicationCoordinator: LogInNavigation, SingInNavigation, Page1Navigation, ProfileNavigation {
     
+    func goToPage2() {
+        
+    }
+    
     func goToProfilePage() {
         self.tabBarController?.selectedIndex = 4
     }

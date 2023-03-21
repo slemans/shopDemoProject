@@ -44,6 +44,11 @@ final class CollectionViewThreeCellPage1: UICollectionViewCell {
         .decorated(with: .tintColor(.blue3))
         .decorated(with: .backgroundColor(.gray9))
         .decorated(with: .cornerRadius(14))
+    private let saleView = UIView()
+    private let saleLabel = UILabel()
+        .decorated(with: .font(.sf(.caption8([.bold]))))
+        .decorated(with: .textColor(.white))
+        .decorated(with: .text("30% off"))
 
     // MARK: - Initialization
 
@@ -73,17 +78,18 @@ private extension CollectionViewThreeCellPage1 {
 
     func setupUI() {
         viewImage.layer.cornerRadius = 10
-        categoryView.backgroundColor = .white
+        categoryView.backgroundColor = .gray9
         categoryView.layer.cornerRadius = 6
-        categoryView.layer.opacity = 0.85
         viewImage.backgroundColor = .gray7
         viewImage.layer.opacity = 0.5
         icon.layer.borderWidth = 1
         icon.layer.borderColor = UIColor.gray4.cgColor
+        saleView.layer.cornerRadius = 9
+        saleView.backgroundColor = .red1
     }
 
     func setupLayout() {
-        [viewImage, icon, title, categoryView, prise, plusButton, likeButton].forEach { addSubview($0) }
+        [viewImage, icon, title, categoryView, prise, plusButton, likeButton, saleView].forEach { addSubview($0) }
 
         icon.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(7.5)
@@ -126,6 +132,16 @@ private extension CollectionViewThreeCellPage1 {
             make.bottom.equalToSuperview().inset(10)
             make.trailing.equalTo(plusButton.snp.leading).offset(-5)
             make.width.height.equalTo(28)
+        }
+        saleView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(7)
+            make.trailing.equalToSuperview().inset(8)
+            make.width.equalTo(49)
+            make.height.equalTo(18)
+        }
+        saleView.addSubview(saleLabel)
+        saleLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
 

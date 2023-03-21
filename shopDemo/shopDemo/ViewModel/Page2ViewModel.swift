@@ -7,8 +7,17 @@
 
 import Foundation
 
+protocol Page2Navigation: AnyObject {
+    
+}
+
 class Page2ViewModel {
     
-    weak var coordinator: ApplicationCoordinator!
+    weak var navigation: Page2Navigation!
+
+    init(nav: Page2Navigation) {
+        self.navigation = nav
+    }
+    
     
 }

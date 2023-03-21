@@ -10,22 +10,30 @@ import UIKit
 class Page2ViewController: UIViewController {
     
     var viewModel: Page2ViewModel!
+    
+    // MARK: - Private
+
+    // MARK: UI
 
     override func loadView() {
         super.loadView()
 
-        // Do any additional setup after loading the view.
+        setupView()
+        setupLayout()
+    }
+
+}
+
+// MARK: - Private functions
+
+private extension Page2ViewController {
+    
+    func setupView() {
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setupLayout() {
+        
     }
-    */
-
+    
 }
