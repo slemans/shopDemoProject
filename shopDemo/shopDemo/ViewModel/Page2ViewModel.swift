@@ -21,3 +21,19 @@ class Page2ViewModel {
     
     
 }
+
+extension Page2ViewModel {
+    
+    struct Model {
+        var name: String
+        var prise: String
+        var image: String
+        
+        init(){
+            self.name = .emptyLine
+            self.prise = .emptyLine
+            self.image = .emptyLine
+        }
+    }
+    
+}

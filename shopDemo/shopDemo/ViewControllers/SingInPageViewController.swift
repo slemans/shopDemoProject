@@ -24,9 +24,18 @@ class SingInPageViewController: UIViewController {
         .decorated(with: .text(Constants.titleLabel))
         .decorated(with: .font(.sf(.h1([.semibold]))))
         .decorated(with: .alignment(.center))
-    private let firstNameTextField = AuthTextField(ofType: .code, placeholder: LableTextField.firstName.rawValue)
-    private let lastNameTextField = AuthTextField(ofType: .code, placeholder: LableTextField.lastName.rawValue)
-    private let emailNameTextField = AuthTextField(ofType: .code, placeholder: LableTextField.email.rawValue)
+    private let firstNameTextField = AuthTextField(ofType: .email, placeholder: LableTextField.firstName.rawValue)
+    private let errorNameLabel = UILabel()
+        .decorated(with: .font(.sf(.caption10())))
+        .decorated(with: .alignment(.center))
+        .decorated(with: .textColor(.red))
+    private let lastNameTextField = AuthTextField(ofType: .email, placeholder: LableTextField.lastName.rawValue)
+    private let emailNameTextField = AuthTextField(ofType: .email, placeholder: LableTextField.email.rawValue)
+    private let errorLabel = UILabel()
+        .decorated(with: .text(Constants.errorLabel))
+        .decorated(with: .font(.sf(.caption10())))
+        .decorated(with: .alignment(.center))
+        .decorated(with: .textColor(.red))
     private let singInButton = UIButton()
         .decorated(with: .title(Constants.titleLabel))
         .decorated(with: .backgroundColor(.blue1))
@@ -54,9 +63,9 @@ class SingInPageViewController: UIViewController {
 
     // MARK: - Override functions
     
-    override func loadView() {
-        super.loadView()
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         setupLayout()
         setupButtons()
         setupTextField()
@@ -71,10 +80,12 @@ private extension SingInPageViewController {
     
     func setupView() {
         view.backgroundColor = .mainColor
+        errorLabel.layer.opacity = 0
+        errorNameLabel.layer.opacity = 0
     }
 
     func setupLayout() {
-        [titleLabel, firstNameTextField, lastNameTextField, emailNameTextField, singInButton, alreadyLabel, logInButton, googleImageView, googleLable, appleImageView, appleLable].forEach { view.addSubview($0) }
+        [titleLabel, firstNameTextField, errorNameLabel, lastNameTextField, emailNameTextField, errorLabel, singInButton, alreadyLabel, logInButton, googleImageView, googleLable, appleImageView, appleLable].forEach { view.addSubview($0) }
 
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(158.71)
@@ -85,12 +96,20 @@ private extension SingInPageViewController {
             make.height.equalTo(29)
             make.leading.trailing.equalToSuperview().inset(44)
         }
+        errorNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(firstNameTextField.snp.bottom).offset(1)
+            make.leading.trailing.height.equalTo(firstNameTextField)
+        }
         lastNameTextField.snp.makeConstraints { make in
             make.top.equalTo(firstNameTextField.snp.bottom).offset(35)
             make.leading.trailing.height.equalTo(firstNameTextField)
         }
         emailNameTextField.snp.makeConstraints { make in
             make.top.equalTo(lastNameTextField.snp.bottom).offset(35)
+            make.leading.trailing.height.equalTo(firstNameTextField)
+        }
+        errorLabel.snp.makeConstraints { make in
+            make.top.equalTo(emailNameTextField.snp.bottom).offset(1)
             make.leading.trailing.height.equalTo(firstNameTextField)
         }
         singInButton.snp.makeConstraints { make in
@@ -131,23 +150,43 @@ private extension SingInPageViewController {
     
     func setupButtons() {
         singInButton.addAction(for: .touchUpInside) { [weak self] _ in
-//            guard let self = self,
-//                let name = self.firstNameTextField.text,
-//                let lastName = self.lastNameTextField.text,
-//                  let email = self.emailNameTextField.text
-//                else { return }
+            guard let self = self,
+                let name = self.firstNameTextField.text,
+                  let lastName = self.lastNameTextField.text,
+                  let email = self.emailNameTextField.text
+                else { return }
             
-            self?.viewModel.goToPage1()
+            self.viewModel.checkTextfield(name, email, lastName) { result in
+                switch result {
+                case (true, false, false):
+                    self.checkView(labe: self.errorLabel)
+                case (false, true, false):
+                    self.checkView(labe: self.errorNameLabel)
+                    self.errorNameLabel.text = Constants.errorEmptyNameLabel
+                default:
+                    self.checkView(labe: self.errorNameLabel)
+                    self.errorNameLabel.text = Constants.errorNameLabel
+                }
+            }
         }
+        
         logInButton.addAction(for: .touchUpInside) { [weak self] _ in
             self?.viewModel.goToLogIn()
         }
     }
     
+    func checkView(labe: UILabel) {
+        [errorNameLabel, errorLabel].forEach { label in
+            if label == labe {
+                label.layer.opacity = 1
+            } else {
+                label.layer.opacity = 0
+            }
+        }
+    }
+    
+    
     func setupTextField() {
-        firstNameTextField.text = LableTextField.firstName.rawValue
-        lastNameTextField.text = LableTextField.lastName.rawValue
-        emailNameTextField.text = LableTextField.email.rawValue
         [firstNameTextField, lastNameTextField, emailNameTextField].forEach { textField in
             textField.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                 for: .editingDidBegin)
@@ -170,6 +209,9 @@ private extension SingInPageViewController {
         static let logInTitle = "Log in"
         static let googleTitle = "Sing in with Google"
         static let appleTitle = "Sing in with Apple"
+        static let errorLabel = "You need to check email"
+        static let errorNameLabel = "That name there is!! You can tap Log in"
+        static let errorEmptyNameLabel = "Need write your name"
     }
     enum LableTextField: String {
         case firstName = "First name"

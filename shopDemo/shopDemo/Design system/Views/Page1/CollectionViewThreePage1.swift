@@ -56,6 +56,7 @@ final class CollectionViewThreePage1: UIView {
     
     func setup(with actions: [CollectionViewThreePage1.Model]) {
         self.actions = actions
+        collectionView.reloadData()
     }
     
 }
@@ -110,9 +111,10 @@ extension CollectionViewThreePage1 {
     
     struct Model {
         let name: String
-        let image: UIImage?
+        let image: String
         let category: CollectionViewTwoPage1.Category
         let prise: String
+        let discont: String
     }
     
 }

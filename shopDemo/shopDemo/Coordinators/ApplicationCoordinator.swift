@@ -34,18 +34,22 @@ final class ApplicationCoordinator {
     // MARK: - Public functions
 
     func start() {
-//        goToSingInPage()
-        goToPage1View()
+        goToSingInPage()
+//        goToPage1View()
+     
     }
 
 }
 
 // MARK: - LogInNavigation, SingInNavigation, Page1Navigation, ProfileNavigation
 
-extension ApplicationCoordinator: LogInNavigation, SingInNavigation, Page1Navigation, ProfileNavigation {
+extension ApplicationCoordinator: LogInNavigation, SingInNavigation, Page1Navigation, ProfileNavigation, Page2Navigation {
     
     func goToPage2() {
-        
+        let page2ViewController = storyboard.instantiateViewController(withIdentifier: "Page2View") as! Page2ViewController
+        let page2ViewModel = Page2ViewModel.init(nav: self)
+        page2ViewController.viewModel = page2ViewModel
+        openController(screen: page2ViewController)
     }
     
     func goToProfilePage() {

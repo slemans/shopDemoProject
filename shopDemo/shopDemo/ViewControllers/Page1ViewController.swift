@@ -48,16 +48,20 @@ class Page1ViewController: UIViewController {
     }()
     private let contentView = UIView()
 
-    override func loadView() {
-        super.loadView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewModel.getAllProduct {
+            self.setupCollectionLatesView()
+            self.setupCollectionFlashView()
+        }
 
         setupTitleView()
         setupView()
         setupLayout()
         setupButtonAction()
         setupCollectionView()
-        setupCollectionLatesView()
-        setupCollectionFlashView()
+        setupCollectionBrendsView()
     }
 
 }
@@ -185,57 +189,23 @@ private extension Page1ViewController {
     }
     
     func setupCollectionFlashView() {
-        let arrayColection: [CollectionViewThreePage1.Model] = [
-            CollectionViewThreePage1.Model(
-                name: "New balanse sneaker",
-                image: nil,
-                category: .kids,
-                prise: "$ 33.00"
-                ),
-            CollectionViewThreePage1.Model(
-                name: "New balanse sneaker",
-                image: nil,
-                category: .kids,
-                prise: "$ 22.50"
-                ),
-            CollectionViewThreePage1.Model(
-                name: "New balanse sneaker",
-                image: nil,
-                category: .kids,
-                prise: "$ 10.50"
-                )
-            ]
-        flash.setup(with: arrayColection)
+        flash.setup(with: viewModel.getArrayColectionFlash)
     }
                 
     func setupCollectionLatesView() {
-        let arrayColection: [CollectionViewTwoPage1.Model] = [
-            CollectionViewTwoPage1.Model(
+        latest.setup(with: viewModel.getArrayColectionLatest)
+    }
+    
+    func setupCollectionBrendsView() {
+        let arrayColection: [CollectionViewTwoPage1.Model] = (1...10).map { _ in
+            return CollectionViewTwoPage1.Model(
                 name: "Samsung S10",
-                image: nil,
-                category: .phone,
+                image: "ps5",
+                category: .game,
                 prise: "$ 180.0000"
-            ),
-            CollectionViewTwoPage1.Model(
-                name: "Play Station 5 console",
-                image: nil,
-                category: .game,
-                prise: "$ 90.0000"
-            ),
-            CollectionViewTwoPage1.Model(
-                name: "Play Station 5 console",
-                image: nil,
-                category: .game,
-                prise: "$ 100.0000"
-            ),
-            CollectionViewTwoPage1.Model(
-                name: "Play Station 5 console",
-                image: nil,
-                category: .game,
-                prise: "$ 100.0000"
             )
-        ]
-        latest.setup(with: arrayColection)
+        }
+        
         brends.setup(with: arrayColection)
     }
     
@@ -357,6 +327,23 @@ private extension Page1ViewController {
 
         return view
     }
+    
+    func makePage2ViewModel(
+        _ model: CollectionViewTwoPage1.Model? = nil,
+        _ model2: CollectionViewThreePage1.Model? = nil) -> Page2ViewModel.Model {
+            var item =  Page2ViewModel.Model()
+        if let product = model {
+            item.name = product.name
+            item.image = product.image
+            item.prise = product.prise
+        } else if let product = model2 {
+            item.name = product.name
+            item.image = product.image
+            item.prise = product.prise
+        }
+        
+        return item
+    }
 
 }
 
@@ -365,7 +352,7 @@ private extension Page1ViewController {
 extension Page1ViewController: CollectionViewTwoPage1Delegate {
     
     func actionCollectionView(_ model: CollectionViewTwoPage1.Model) {
-        viewModel.openPage2()
+        viewModel.openPage2(product: makePage2ViewModel(model, nil))
     }
     
 }
@@ -373,7 +360,7 @@ extension Page1ViewController: CollectionViewTwoPage1Delegate {
 extension Page1ViewController: CollectionViewThreePage1Delegate {
     
     func actionCollectionTwoView(_ model: CollectionViewThreePage1.Model) {
-        viewModel.openPage2()
+        viewModel.openPage2(product: makePage2ViewModel(nil, model))
     }
     
 }

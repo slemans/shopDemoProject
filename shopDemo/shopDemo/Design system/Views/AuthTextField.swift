@@ -55,9 +55,7 @@ private extension AuthTextField {
     }
 
     func setupKeyboardType() {
-        guard textFieldType == .email || textFieldType == .code else { return }
-
-        decorate(with: .keyboard(type: .numberPad))
+        textFieldType == .code ? decorate(with: .keyboard(type: .numberPad)) : decorate(with: .keyboard(type: .emailAddress))
     }
     func setupRightView() {
         switch textFieldType {

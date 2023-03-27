@@ -56,6 +56,7 @@ final class CollectionViewTwoPage1: UIView {
     
     func setup(with actions: [CollectionViewTwoPage1.Model]) {
         self.actions = actions
+        collectionView.reloadData()
     }
     
 }
@@ -110,7 +111,7 @@ extension CollectionViewTwoPage1 {
     
     struct Model {
         let name: String
-        let image: UIImage?
+        let image: String
         let category: Category
         let prise: String
     }

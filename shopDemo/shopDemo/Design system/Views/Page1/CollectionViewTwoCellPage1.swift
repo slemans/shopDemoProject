@@ -34,15 +34,17 @@ final class CollectionViewTwoCellPage1: UICollectionViewCell {
         .decorated(with: .tintColor(.blue3))
         .decorated(with: .backgroundColor(.gray9))
         .decorated(with: .cornerRadius(10))
-        
+
 
     // MARK: - Initialization
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
+        addGradient()
         setupUI()
         setupLayout()
+        
     }
 
     required init?(coder: NSCoder) {
@@ -55,24 +57,53 @@ final class CollectionViewTwoCellPage1: UICollectionViewCell {
         title.decorated(with: .text(model.name))
         prise.decorated(with: .text(model.prise))
         categoryLabel.decorated(with: .text(model.category.rawValue))
-        imageView.decorated(with: .image(model.image))
+        
+        if model.image == "ps5" {
+            imageView.decorated(with: .image(UIImage(named: "ps5")))
+        } else {
+            getImageForUrl(url: model.image)
+        }
     }
 
 }
 
 private extension CollectionViewTwoCellPage1 {
 
+    func getImageForUrl(url: String) {
+        guard let urlImg = URL(string: url) else { return }
+        URLSession.shared.dataTask(with: urlImg) { data, _, _ in
+            if let data = data,
+                let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.imageView.decorated(with: .image(image))
+                }
+            }
+        }.resume()
+    }
+
     func setupUI() {
-        viewImage.layer.cornerRadius = 10
         categoryView.backgroundColor = .gray9
         categoryView.layer.cornerRadius = 6
-        viewImage.backgroundColor = .gray7
-        viewImage.layer.opacity = 0.5
+        backgroundColor = .white
+        layer.cornerRadius = 10
+        layer.masksToBounds = true
+        imageView.contentMode = .scaleToFill
+    }
+
+    func addGradient() {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = [
+            UIColor(red: 0.071, green: 0.071, blue: 0.071, alpha: 0).cgColor,
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor]
+        gradient.startPoint = CGPoint(x: 0.5, y: 0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+        imageView.layer.addSublayer(gradient)
     }
 
     func setupLayout() {
         [viewImage, title, categoryView, prise, plusButton].forEach { addSubview($0) }
-        
+
         viewImage.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
@@ -80,7 +111,8 @@ private extension CollectionViewTwoCellPage1 {
         }
         viewImage.addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
+            make.width.height.equalToSuperview()
+            make.top.leading.equalToSuperview()
         }
         prise.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(7.37)
@@ -106,7 +138,7 @@ private extension CollectionViewTwoCellPage1 {
             make.trailing.equalToSuperview().inset(5)
             make.width.height.equalTo(20)
         }
-        
+
     }
 
 }

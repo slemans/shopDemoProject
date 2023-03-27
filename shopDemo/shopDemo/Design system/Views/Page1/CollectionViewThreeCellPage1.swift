@@ -48,7 +48,6 @@ final class CollectionViewThreeCellPage1: UICollectionViewCell {
     private let saleLabel = UILabel()
         .decorated(with: .font(.sf(.caption8([.bold]))))
         .decorated(with: .textColor(.white))
-        .decorated(with: .text("30% off"))
 
     // MARK: - Initialization
 
@@ -56,6 +55,7 @@ final class CollectionViewThreeCellPage1: UICollectionViewCell {
         super.init(frame: frame)
 
         setupUI()
+        addGradient()
         setupLayout()
     }
 
@@ -69,7 +69,8 @@ final class CollectionViewThreeCellPage1: UICollectionViewCell {
         title.decorated(with: .text(model.name))
         prise.decorated(with: .text(model.prise))
         categoryLabel.decorated(with: .text(model.category.rawValue))
-        imageView.decorated(with: .image(model.image))
+        getImageForUrl(url: model.image)
+        saleLabel.decorated(with: .text(model.discont))
     }
 
 }
@@ -77,15 +78,39 @@ final class CollectionViewThreeCellPage1: UICollectionViewCell {
 private extension CollectionViewThreeCellPage1 {
 
     func setupUI() {
-        viewImage.layer.cornerRadius = 10
+        layer.cornerRadius = 10
+        layer.masksToBounds = true
         categoryView.backgroundColor = .gray9
         categoryView.layer.cornerRadius = 6
-        viewImage.backgroundColor = .gray7
-        viewImage.layer.opacity = 0.5
         icon.layer.borderWidth = 1
         icon.layer.borderColor = UIColor.gray4.cgColor
         saleView.layer.cornerRadius = 9
         saleView.backgroundColor = .red1
+        imageView.backgroundColor = .white
+        imageView.contentMode = .scaleAspectFit
+    }
+    
+    func addGradient() {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = [
+            UIColor(red: 0.071, green: 0.071, blue: 0.071, alpha: 0).cgColor,
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor]
+        gradient.startPoint = CGPoint(x: 0.5, y: 0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+        imageView.layer.addSublayer(gradient)
+    }
+    
+    func getImageForUrl(url: String) {
+        guard let urlImg = URL(string: url) else { return }
+        URLSession.shared.dataTask(with: urlImg) { data, _, _ in
+            if let data = data,
+                let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.imageView.decorated(with: .image(image))
+                }
+            }
+        }.resume()
     }
 
     func setupLayout() {
@@ -102,7 +127,7 @@ private extension CollectionViewThreeCellPage1 {
         }
         viewImage.addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
+            make.width.height.top.leading.equalToSuperview()
         }
         prise.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(11.66)
