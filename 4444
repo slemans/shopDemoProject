@@ -1,0 +1,16 @@
+import Foundation
+
+let str = readLine()
+
+let array = str?.components(separatedBy: " ").compactMap { Int($0) }
+
+func chaeckPeople(array: [Int]?) {
+    guard let first = array?.first,
+          let last = array?.last else  { return print("NO") }
+    
+    if first > last {
+        return array?.sorted(by: >) == array ? print("YES") : print("NO")
+    } else {
+        return array?.sorted(by: <) == array ? print("YES") : print("NO")
+    }
+}
