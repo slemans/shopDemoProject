@@ -14,7 +14,6 @@
 		85BE7FFB29C318DC00C94F8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85BE7FF929C318DC00C94F8D /* LaunchScreen.storyboard */; };
 		85BE800429C3190700C94F8D /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE800329C3190700C94F8D /* Moya */; };
 		85BE800729C3193E00C94F8D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 85BE800629C3193E00C94F8D /* SnapKit */; };
-		85BE801929C31E5B00C94F8D /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BE801829C31E5B00C94F8D /* ApplicationCoordinator.swift */; };
 		85BE801B29C3505800C94F8D /* SingInPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BE801A29C3505800C94F8D /* SingInPageViewController.swift */; };
 		85BE801D29C350C000C94F8D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BE801C29C350C000C94F8D /* LoginViewController.swift */; };
 		85BE801F29C3514600C94F8D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BE801E29C3514600C94F8D /* LoginViewModel.swift */; };
@@ -63,6 +62,16 @@
 		85FE01D029D1BF480066CB20 /* ModelLatest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01CF29D1BF480066CB20 /* ModelLatest.swift */; };
 		85FE01D229D1C1C70066CB20 /* FlashSaleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01D129D1C1C70066CB20 /* FlashSaleModel.swift */; };
 		85FE01D429D1D0990066CB20 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01D329D1D0990066CB20 /* Int+Extension.swift */; };
+		85FE01D929D2DF220066CB20 /* DeviceAccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01D829D2DF220066CB20 /* DeviceAccessService.swift */; };
+		85FE01DB29D2E00D0066CB20 /* AuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01DA29D2E00D0066CB20 /* AuthorizationStatus.swift */; };
+		85FE01DD29D2E7050066CB20 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01DC29D2E7050066CB20 /* Coordinator.swift */; };
+		85FE01DF29D2E7A00066CB20 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01DE29D2E7A00066CB20 /* AppCoordinator.swift */; };
+		85FE01E229D2E9410066CB20 /* SingInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01E129D2E9410066CB20 /* SingInCoordinator.swift */; };
+		85FE01EA29D335700066CB20 /* LogInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01E929D335700066CB20 /* LogInCoordinator.swift */; };
+		85FE01EC29D339360066CB20 /* Page1Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01EB29D339360066CB20 /* Page1Coordinator.swift */; };
+		85FE01F029D361A80066CB20 /* Page2Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01EF29D361A80066CB20 /* Page2Coordinator.swift */; };
+		85FE01F229D48D0C0066CB20 /* LayoutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01F129D48D0C0066CB20 /* LayoutConstants.swift */; };
+		85FE01F429D493820066CB20 /* ViewDecorator+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FE01F329D493820066CB20 /* ViewDecorator+UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +82,6 @@
 		85BE7FF729C318DC00C94F8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85BE7FFA29C318DC00C94F8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85BE7FFC29C318DC00C94F8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		85BE801829C31E5B00C94F8D /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		85BE801A29C3505800C94F8D /* SingInPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInPageViewController.swift; sourceTree = "<group>"; };
 		85BE801C29C350C000C94F8D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		85BE801E29C3514600C94F8D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -122,6 +130,16 @@
 		85FE01CF29D1BF480066CB20 /* ModelLatest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLatest.swift; sourceTree = "<group>"; };
 		85FE01D129D1C1C70066CB20 /* FlashSaleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashSaleModel.swift; sourceTree = "<group>"; };
 		85FE01D329D1D0990066CB20 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		85FE01D829D2DF220066CB20 /* DeviceAccessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAccessService.swift; sourceTree = "<group>"; };
+		85FE01DA29D2E00D0066CB20 /* AuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationStatus.swift; sourceTree = "<group>"; };
+		85FE01DC29D2E7050066CB20 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		85FE01DE29D2E7A00066CB20 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		85FE01E129D2E9410066CB20 /* SingInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInCoordinator.swift; sourceTree = "<group>"; };
+		85FE01E929D335700066CB20 /* LogInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInCoordinator.swift; sourceTree = "<group>"; };
+		85FE01EB29D339360066CB20 /* Page1Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page1Coordinator.swift; sourceTree = "<group>"; };
+		85FE01EF29D361A80066CB20 /* Page2Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page2Coordinator.swift; sourceTree = "<group>"; };
+		85FE01F129D48D0C0066CB20 /* LayoutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstants.swift; sourceTree = "<group>"; };
+		85FE01F329D493820066CB20 /* ViewDecorator+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewDecorator+UIView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,9 +174,9 @@
 		85BE7FEA29C318DB00C94F8D /* shopDemo */ = {
 			isa = PBXGroup;
 			children = (
-				85BE800829C31AB400C94F8D /* Model */,
 				85BE802229C352D800C94F8D /* ViewControllers */,
 				85BE800A29C31AC500C94F8D /* ViewModel */,
+				85BE800829C31AB400C94F8D /* Models */,
 				85BE802F29C3611800C94F8D /* Comman */,
 				85FE01B729CCA79C0066CB20 /* Services */,
 				85BE800B29C31B6700C94F8D /* Coordinators */,
@@ -170,14 +188,14 @@
 			path = shopDemo;
 			sourceTree = "<group>";
 		};
-		85BE800829C31AB400C94F8D /* Model */ = {
+		85BE800829C31AB400C94F8D /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				85FE01C629D19DF50066CB20 /* UserMode.swift */,
 				85FE01CF29D1BF480066CB20 /* ModelLatest.swift */,
 				85FE01D129D1C1C70066CB20 /* FlashSaleModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		85BE800A29C31AC500C94F8D /* ViewModel */ = {
@@ -195,7 +213,9 @@
 		85BE800B29C31B6700C94F8D /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				85BE801829C31E5B00C94F8D /* ApplicationCoordinator.swift */,
+				85FE01DC29D2E7050066CB20 /* Coordinator.swift */,
+				85FE01DE29D2E7A00066CB20 /* AppCoordinator.swift */,
+				85FE01E029D2E91C0066CB20 /* ChildCoordinators */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -257,6 +277,7 @@
 			children = (
 				85BE804429C3839000C94F8D /* Extension */,
 				85BE803029C3612700C94F8D /* View decorator */,
+				85FE01F129D48D0C0066CB20 /* LayoutConstants.swift */,
 			);
 			path = Comman;
 			sourceTree = "<group>";
@@ -278,6 +299,7 @@
 				85BE803C29C3665F00C94F8D /* ViewDecorator+UITextField.swift */,
 				85BE804029C36E2700C94F8D /* ViewDecorator+UIButton.swift */,
 				85BE804229C3776400C94F8D /* ViewDecorator+UIImageView.swift */,
+				85FE01F329D493820066CB20 /* ViewDecorator+UIView.swift */,
 			);
 			path = Decorators;
 			sourceTree = "<group>";
@@ -360,6 +382,7 @@
 		85FE01B729CCA79C0066CB20 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				85FE01D729D2DF0D0066CB20 /* Device */,
 				85FE01C829D1BAD80066CB20 /* Network */,
 				85FE01C329D17C790066CB20 /* CoreDateService */,
 			);
@@ -381,6 +404,26 @@
 				85FE01CB29D1BB930066CB20 /* ShopThingsTarget.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		85FE01D729D2DF0D0066CB20 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				85FE01D829D2DF220066CB20 /* DeviceAccessService.swift */,
+				85FE01DA29D2E00D0066CB20 /* AuthorizationStatus.swift */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		85FE01E029D2E91C0066CB20 /* ChildCoordinators */ = {
+			isa = PBXGroup;
+			children = (
+				85FE01E129D2E9410066CB20 /* SingInCoordinator.swift */,
+				85FE01E929D335700066CB20 /* LogInCoordinator.swift */,
+				85FE01EB29D339360066CB20 /* Page1Coordinator.swift */,
+				85FE01EF29D361A80066CB20 /* Page2Coordinator.swift */,
+			);
+			path = ChildCoordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -468,6 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85FE01F029D361A80066CB20 /* Page2Coordinator.swift in Sources */,
 				85BE801D29C350C000C94F8D /* LoginViewController.swift in Sources */,
 				85BE803B29C3629800C94F8D /* UIFont+Extension.swift in Sources */,
 				85E5CE7F29C8A682002889CA /* CollectionViewPage1.swift in Sources */,
@@ -475,6 +519,7 @@
 				85BE7FF629C318DB00C94F8D /* shopDemo.xcdatamodeld in Sources */,
 				85FE01CE29D1BE1D0066CB20 /* URL+Extension.swift in Sources */,
 				85E5CE7929C7A8FE002889CA /* CustomView.swift in Sources */,
+				85FE01D929D2DF220066CB20 /* DeviceAccessService.swift in Sources */,
 				85BE807529C4939800C94F8D /* UIEdgeInsetsExtension.swift in Sources */,
 				85BE807329C4902500C94F8D /* HidePasswordButton.swift in Sources */,
 				85BE804129C36E2700C94F8D /* ViewDecorator+UIButton.swift in Sources */,
@@ -482,9 +527,12 @@
 				85BE802C29C355B700C94F8D /* Page2ViewController.swift in Sources */,
 				85E5CE8829C8EB0F002889CA /* CollectionViewTwoCellPage1.swift in Sources */,
 				85BE804629C383A800C94F8D /* UIControlExtension.swift in Sources */,
+				85FE01F229D48D0C0066CB20 /* LayoutConstants.swift in Sources */,
+				85FE01EC29D339360066CB20 /* Page1Coordinator.swift in Sources */,
 				85FE01C529D17F960066CB20 /* ServiceWorkWithCoreDate.swift in Sources */,
 				85E5CE7D29C899B3002889CA /* SearchView.swift in Sources */,
 				85BE803729C361B900C94F8D /* ViewDecorator+UILabel.swift in Sources */,
+				85FE01E229D2E9410066CB20 /* SingInCoordinator.swift in Sources */,
 				85E5CE8229C8A7D5002889CA /* CollectionViewCellPage1.swift in Sources */,
 				85FE01C729D19DF50066CB20 /* UserMode.swift in Sources */,
 				85E5CE8629C8E9CC002889CA /* CollectionViewTwoPage1.swift in Sources */,
@@ -495,16 +543,19 @@
 				85BE802629C3535100C94F8D /* ProfileViewController.swift in Sources */,
 				85BE802E29C355C800C94F8D /* Page2ViewModel.swift in Sources */,
 				85E5CE7729C793D6002889CA /* UIImage+Extension.swift in Sources */,
-				85BE801929C31E5B00C94F8D /* ApplicationCoordinator.swift in Sources */,
 				85BE802429C3532500C94F8D /* ProfileViewModel.swift in Sources */,
+				85FE01DB29D2E00D0066CB20 /* AuthorizationStatus.swift in Sources */,
 				85BE7FEC29C318DB00C94F8D /* AppDelegate.swift in Sources */,
+				85FE01DD29D2E7050066CB20 /* Coordinator.swift in Sources */,
 				85FE01D429D1D0990066CB20 /* Int+Extension.swift in Sources */,
+				85FE01F429D493820066CB20 /* ViewDecorator+UIView.swift in Sources */,
 				85BE802129C3517100C94F8D /* SingInPageViewModel.swift in Sources */,
 				85E5CE8D29C8FE70002889CA /* CollectionViewThreePage1.swift in Sources */,
 				85E5CE8429C8A991002889CA /* UIViewExtension.swift in Sources */,
 				85BE802829C353A600C94F8D /* Page1ViewModel.swift in Sources */,
 				85BE803429C3618B00C94F8D /* ViewDecorator.swift in Sources */,
 				85FE01D229D1C1C70066CB20 /* FlashSaleModel.swift in Sources */,
+				85FE01EA29D335700066CB20 /* LogInCoordinator.swift in Sources */,
 				85BE803F29C367A900C94F8D /* AppTheme+Colors.swift in Sources */,
 				85FE01CA29D1BB5E0066CB20 /* ShopThingsService.swift in Sources */,
 				85BE802A29C353D200C94F8D /* Page1ViewController.swift in Sources */,
@@ -513,6 +564,7 @@
 				85FE01CC29D1BB930066CB20 /* ShopThingsTarget.swift in Sources */,
 				85BE801B29C3505800C94F8D /* SingInPageViewController.swift in Sources */,
 				85BE801F29C3514600C94F8D /* LoginViewModel.swift in Sources */,
+				85FE01DF29D2E7A00066CB20 /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +714,7 @@
 				DEVELOPMENT_TEAM = 36SLD3SQ2W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = shopDemo/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To choose image from the photo library, you need to grant the permission in Settings.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -691,6 +744,7 @@
 				DEVELOPMENT_TEAM = 36SLD3SQ2W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = shopDemo/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To choose image from the photo library, you need to grant the permission in Settings.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

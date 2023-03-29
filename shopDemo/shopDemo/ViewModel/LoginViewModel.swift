@@ -7,39 +7,24 @@
 
 import Foundation
 
-protocol LogInNavigation: AnyObject {
-
-    func goToPage1View()
-
+protocol LogInPageViewModelDelegat {
+    func goToPage1View(name: String, completion: @escaping (Bool) -> Void)
 }
 
-class LoginViewModel {
+class LoginViewModel: LogInPageViewModelDelegat {
     
-    weak var navigation: LogInNavigation!
-    private let serviseCoreData: ServiceWorkWithCoreDate
-
-    init(nav: LogInNavigation) {
-        self.navigation = nav
-        self.serviseCoreData = ServiceWorkWithCoreDate.shared
-    }
+    weak var coordinatorDelegate: LogInViewModelCoordinatorDelegate?
+    weak var serviseCoreData: ServiceWorkWithCoreDate?
     
     func goToPage1View(name: String, completion: @escaping (Bool) -> Void) {
-        serviseCoreData.newUserOrSaveNewUser(name) { [weak self] result in
+        serviseCoreData?.newUserOrSaveNewUser(name) { [weak self] result in
             switch result {
             case false:
-                self?.goToPage1()
+                self?.coordinatorDelegate?.goToPage1View()
             case true:
                 completion(false)
             }
         }
-    }
-    
-}
-
-private extension LoginViewModel {
-    
-    func goToPage1() {
-        navigation.goToPage1View()
     }
     
 }

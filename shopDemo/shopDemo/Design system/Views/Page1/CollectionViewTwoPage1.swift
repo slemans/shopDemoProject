@@ -117,9 +117,9 @@ extension CollectionViewTwoPage1 {
     }
     
     enum Category: String {
-        case game = "Game"
-        case phone = "Phone"
-        case card = "Card"
+        case game = "Games"
+        case phone = "Phones"
+        case card = "Cars"
         case kids = "Kids"
     }
     

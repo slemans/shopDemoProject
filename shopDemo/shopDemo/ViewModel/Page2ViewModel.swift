@@ -7,18 +7,11 @@
 
 import Foundation
 
-protocol Page2Navigation: AnyObject {
-    
-}
+protocol Page2ViewModelDelegat {}
 
-class Page2ViewModel {
-    
-    weak var navigation: Page2Navigation!
-
-    init(nav: Page2Navigation) {
-        self.navigation = nav
-    }
-    
+class Page2ViewModel: Page2ViewModelDelegat {
+   
+    weak var coordinatorDelegate: Page2ViewModelCoordinatorDelegate?
     
 }
 

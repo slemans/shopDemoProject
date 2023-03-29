@@ -7,40 +7,36 @@
 
 import Foundation
 
-protocol SingInNavigation: AnyObject {
-
+protocol SingInPageViewModelDelegat {
+    typealias DateUser = (firstName: String, lastName: String, email: String)
+    typealias respondTextField = (Bool, Bool, Bool)
+    
     func goToLogInPage()
-    func goToPage1View()
-
+    func checkTextField(date: DateUser, completion: @escaping (respondTextField) -> Void)
 }
 
-class SingInPageViewModel {
-
-    weak var navigation: SingInNavigation!
-    private let serviseCoreData: ServiceWorkWithCoreDate
-
-    init(nav: SingInNavigation) {
-        self.navigation = nav
-        self.serviseCoreData = ServiceWorkWithCoreDate.shared
-    }
-
-    func goToLogIn() {
-        navigation.goToLogInPage()
-    }
+class SingInPageViewModel: SingInPageViewModelDelegat {
     
-    func checkTextfield(_ firstName: String, _ email: String, _ lastName: String, completion: @escaping ((Bool, Bool, Bool)) -> Void) {
-        if !isValidEmail(email) {
+    weak var coordinatorDelegate: SingInViewModelCoordinatorDelegate?
+    weak var serviseCoreData: ServiceWorkWithCoreDate?
+
+    func checkTextField(date: DateUser, completion: @escaping (respondTextField) -> Void) {
+        if !isValidEmail(date.email) {
             completion((true, false, false))
-        } else if firstName.isEmpty {
+        } else if date.firstName.isEmpty {
             completion((false, true, false))
         } else {
-            let user = UserMode(firstName: firstName, lastName: lastName, email: email)
+            let user = UserMode(firstName: date.firstName, lastName: date.lastName, email: date.email)
             saveUser(user: user) { result in
                 if !result {
                     completion((false, false, true))
                 }
             }
-        } 
+        }
+    }
+    
+    func goToLogInPage() {
+        coordinatorDelegate?.goToLogInPage()
     }
 
 }
@@ -56,7 +52,7 @@ private extension SingInPageViewModel {
     }
     
     func saveUser(user: UserMode, completion: @escaping (Bool) -> Void) {
-        serviseCoreData.newUserOrSaveNewUser(user.firstName) { [weak self] result in
+        serviseCoreData?.newUserOrSaveNewUser(user.firstName) { [weak self] result in
             switch result {
             case true:
                 self?.goToPage1(user)
@@ -67,8 +63,8 @@ private extension SingInPageViewModel {
     }
     
     func goToPage1(_ user: UserMode) {
-        serviseCoreData.saveNewUserInCoreDate(user)
-        navigation.goToPage1View()
+        serviseCoreData?.saveNewUserInCoreDate(user)
+        coordinatorDelegate?.goToPage1View()
     }
     
 }

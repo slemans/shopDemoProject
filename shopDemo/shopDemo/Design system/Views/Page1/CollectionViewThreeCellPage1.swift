@@ -29,7 +29,7 @@ final class CollectionViewThreeCellPage1: UICollectionViewCell {
     private let prise = UILabel()
         .decorated(with: .alignment(.left))
         .decorated(with: .textColor(.white))
-        .decorated(with: .font(.sf(.caption9([.semibold]))))
+        .decorated(with: .font(.sf(.caption10([.semibold]))))
     private let categoryLabel = UILabel()
         .decorated(with: .textColor(.black))
         .decorated(with: .font(.sf(.caption7([.bold]))))
@@ -46,7 +46,7 @@ final class CollectionViewThreeCellPage1: UICollectionViewCell {
         .decorated(with: .cornerRadius(14))
     private let saleView = UIView()
     private let saleLabel = UILabel()
-        .decorated(with: .font(.sf(.caption8([.bold]))))
+        .decorated(with: .font(.sf(.caption9([.bold]))))
         .decorated(with: .textColor(.white))
 
     // MARK: - Initialization

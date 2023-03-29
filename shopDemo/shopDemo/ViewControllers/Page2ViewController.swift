@@ -17,17 +17,17 @@ class Page2ViewController: UIViewController {
     // MARK: UI
     
     private let mainImageView = UIImageView()
-        .decorated(with: .image(UIImage(named: "bigPhoto")))
+        .decorated(with: .image(Constants.mainImageViewImage))
     private let likeView = UIView()
     private let allPhotoView = UIView()
     private let nameLabel = UILabel()
         .decorated(with: .font(.sf(.subheadline([.bold]))))
-        .decorated(with: .text("New balance Sneakers"))
+        .decorated(with: .text(Constants.nameLabel))
         .decorated(with: .textColor(.black))
         .decorated(with: .multiline)
     private let priceLabel = UILabel()
         .decorated(with: .font(.sf(.caption12([.bold]))))
-        .decorated(with: .text("$ 22,50"))
+        .decorated(with: .text(Constants.priceLabel))
         .decorated(with: .textColor(.black))
     private let descriptionLabel = UILabel()
         .decorated(with: .font(.sf(.caption10([.bold]))))
@@ -42,8 +42,10 @@ class Page2ViewController: UIViewController {
     private let colorView = UIView()
     private let bottomView = UIView()
 
-    override func loadView() {
-        super.loadView()
+    // MARK: ViewDidLoad
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
         setupView()
         setupUI()
@@ -57,76 +59,80 @@ class Page2ViewController: UIViewController {
 private extension Page2ViewController {
     
     func setupView() {
-        
+        view.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationBar.topItem?.title = .emptyLine
     }
     
     func setupUI() {
-        mainImageView.backgroundColor = .gray4
-        mainImageView.layer.cornerRadius = 10
-        likeView.backgroundColor = .gray10
-        likeView.layer.cornerRadius = 10
-        allPhotoView.backgroundColor = .gray1
-        bottomView.backgroundColor = .blue4
-        bottomView.layer.cornerRadius = 20
+        mainImageView
+            .decorated(with: .backgroundColor(.gray4))
+            .decorated(with: .cornerRadius(LayoutConstants.corner10))
+        likeView
+            .decorated(with: .backgroundColor(.gray10))
+            .decorated(with: .cornerRadius(LayoutConstants.corner10))
+        bottomView
+            .decorated(with: .backgroundColor(.blue4))
+            .decorated(with: .cornerRadius(LayoutConstants.corner20))
     }
     
     func setupLayout() {
         [mainImageView, likeView, allPhotoView, nameLabel, priceLabel, descriptionLabel, reitingView, colorLabel, colorView, bottomView].forEach { view.addSubview($0) }
         
         mainImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(-3)
-            make.trailing.equalToSuperview().inset(52)
-            make.top.equalToSuperview().offset(70)
-            make.height.equalTo(279)
+            make.leading.equalToSuperview().inset(-LayoutConstants.insert3)
+            make.trailing.equalToSuperview().inset(LayoutConstants.insert52)
+            make.top.equalToSuperview().offset(LayoutConstants.offset70)
+            make.height.equalTo(LayoutConstants.height279)
         }
         
         likeView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(34)
-            make.top.equalToSuperview().offset(226)
-            make.height.equalTo(95)
-            make.width.equalTo(42)
+            make.trailing.equalToSuperview().inset(LayoutConstants.insert34)
+            make.top.equalToSuperview().offset(LayoutConstants.offset226)
+            make.height.equalTo(LayoutConstants.height95)
+            make.width.equalTo(LayoutConstants.width42)
         }
         makeLikeAndSomthingView()
         
         allPhotoView.snp.makeConstraints { make in
             make.trailing.leading.equalToSuperview()
-            make.top.equalTo(mainImageView.snp.bottom).offset(30)
-            make.height.equalTo(50)
+            make.top.equalTo(mainImageView.snp.bottom).offset(LayoutConstants.offset30)
+            make.height.equalTo(LayoutConstants.height50)
         }
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(24.87)
-            make.top.equalTo(allPhotoView.snp.bottom).offset(25)
-            make.width.equalTo(110)
+            make.leading.equalToSuperview().offset(LayoutConstants.offset24poin87)
+            make.top.equalTo(allPhotoView.snp.bottom).offset(LayoutConstants.offset25)
+            make.width.equalTo(LayoutConstants.width110)
         }
         priceLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(23.7)
-            make.top.equalTo(allPhotoView.snp.bottom).offset(25)
+            make.trailing.equalToSuperview().inset(LayoutConstants.insert23point7)
+            make.top.equalTo(allPhotoView.snp.bottom).offset(LayoutConstants.offset25)
         }
         descriptionLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(24.39)
-            make.trailing.equalToSuperview().inset(156.64)
-            make.top.equalTo(nameLabel.snp.bottom).offset(16)
+            make.leading.equalToSuperview().offset(LayoutConstants.offset24poin39)
+            make.trailing.equalToSuperview().inset(LayoutConstants.insert156point64)
+            make.top.equalTo(nameLabel.snp.bottom).offset(LayoutConstants.offset16)
         }
         reitingView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().offset(24)
-            make.height.equalTo(10)
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(13.57)
+            make.leading.trailing.equalToSuperview().offset(LayoutConstants.offset24)
+            make.height.equalTo(LayoutConstants.height10)
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(LayoutConstants.offset13point57)
         }
         makeReitingView()
         
         colorLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(24.35)
-            make.top.equalTo(reitingView.snp.bottom).offset(15.93)
+            make.leading.equalToSuperview().offset(LayoutConstants.offset24poin35)
+            make.top.equalTo(reitingView.snp.bottom).offset(LayoutConstants.offset15poin93)
         }
         colorView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().offset(25)
-            make.top.equalTo(colorLabel.snp.bottom).offset(12.91)
-            make.height.equalTo(24)
+            make.leading.trailing.equalToSuperview().offset(LayoutConstants.offset25)
+            make.top.equalTo(colorLabel.snp.bottom).offset(LayoutConstants.offset12point91)
+            make.height.equalTo(LayoutConstants.height24)
         }
         makeColorView()
         bottomView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(colorView.snp.bottom).offset(20)
+            make.top.equalTo(colorView.snp.bottom).offset(LayoutConstants.offset20)
         }
         makeBottomView()
     }
@@ -134,24 +140,24 @@ private extension Page2ViewController {
     func makeBottomView() {
         let title = UILabel()
             .decorated(with: .font(.sf(.caption9([.bold]))))
-            .decorated(with: .text("Quanity:"))
+            .decorated(with: .text(Constants.titleQuanity))
             .decorated(with: .textColor(.gray3))
-        let minus = UIImageView().decorated(with: .image(UIImage(systemName: "minus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 9, weight: .bold))))
-        let plus = UIImageView().decorated(with: .image(UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 9, weight: .bold))))
-        plus.decorated(with: .tinColor(.white))
-        minus.decorated(with: .tinColor(.white))
-        
+        let minus = UIImageView()
+            .decorated(with: .image(Constants.minus))
+            .decorated(with: .tinColor(.white))
+        let plus = UIImageView()
+            .decorated(with: .image(Constants.plus))
+            .decorated(with: .tinColor(.white))
         let buttonView = UIView()
-        buttonView.backgroundColor = .blue1
-        buttonView.layer.cornerRadius = 15
-        
-        
+            .decorated(with: .backgroundColor(.blue1))
+            .decorated(with: .cornerRadius(LayoutConstants.corner15))
         let viewMunis = UIView()
+            .decorated(with: .backgroundColor(.blue1))
+            .decorated(with: .cornerRadius(LayoutConstants.corner10))
         let plusView = UIView()
-        viewMunis.backgroundColor = .blue1
-        plusView.backgroundColor = .blue1
-        viewMunis.layer.cornerRadius = 10
-        plusView.layer.cornerRadius = 10
+            .decorated(with: .backgroundColor(.blue1))
+            .decorated(with: .cornerRadius(LayoutConstants.corner10))
+        
         viewMunis.addSubview(minus)
         minus.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -163,97 +169,99 @@ private extension Page2ViewController {
         
         [title, viewMunis, plusView, buttonView].forEach { bottomView.addSubview($0) }
         title.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(24.3)
-            make.top.equalToSuperview().offset(17.07)
+            make.leading.equalToSuperview().offset(LayoutConstants.offset23poin3)
+            make.top.equalToSuperview().offset(LayoutConstants.offset17poin7)
         }
         viewMunis.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(24)
-            make.top.equalTo(title.snp.bottom).offset(11.67)
-            make.width.equalTo(38.21)
-            make.height.equalTo(22)
+            make.leading.equalToSuperview().offset(LayoutConstants.offset24)
+            make.top.equalTo(title.snp.bottom).offset(LayoutConstants.offset11point67)
+            make.width.equalTo(LayoutConstants.width38poin21)
+            make.height.equalTo(LayoutConstants.height22)
         }
         plusView.snp.makeConstraints { make in
-            make.leading.equalTo(viewMunis.snp.trailing).offset(20.79)
-            make.top.equalTo(title.snp.bottom).offset(11.67)
-            make.width.equalTo(38.21)
-            make.height.equalTo(22)
+            make.leading.equalTo(viewMunis.snp.trailing).offset(LayoutConstants.offset20poin79)
+            make.top.equalTo(title.snp.bottom).offset(LayoutConstants.offset11point67)
+            make.width.equalTo(LayoutConstants.width38poin21)
+            make.height.equalTo(LayoutConstants.height22)
         }
         buttonView.snp.makeConstraints { make in
-            make.leading.equalTo(plusView.snp.trailing).offset(60)
-            make.top.equalToSuperview().offset(19)
-            make.trailing.equalToSuperview().inset(23)
-            make.height.equalTo(44)
+            make.leading.equalTo(plusView.snp.trailing).offset(LayoutConstants.offset60)
+            make.top.equalToSuperview().offset(LayoutConstants.offset19)
+            make.trailing.equalToSuperview().inset(LayoutConstants.offset23)
+            make.height.equalTo(LayoutConstants.height44)
         }
         
         let heshLabel = UILabel()
-            .decorated(with: .font(.sf(.caption7([.bold]))))
-            .decorated(with: .text("#2,500"))
+            .decorated(with: .font(.sf(.caption8([.bold]))))
+            .decorated(with: .text(Constants.descriptionAdd))
             .decorated(with: .textColor(.gray13))
         let addLabel = UILabel()
-            .decorated(with: .font(.sf(.caption7([.bold]))))
-            .decorated(with: .text("ADD TO CART"))
+            .decorated(with: .font(.sf(.caption8([.bold]))))
+            .decorated(with: .text(Constants.addToCart))
             .decorated(with: .textColor(.white))
         buttonView.addSubview(heshLabel)
         buttonView.addSubview(addLabel)
+        
         heshLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(29.85)
-            make.top.equalToSuperview().offset(19.04)
+            make.leading.equalToSuperview().offset(LayoutConstants.offset29poin85)
+            make.top.equalToSuperview().offset(LayoutConstants.offset19poin04)
         }
         addLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(30.51)
-            make.top.equalToSuperview().offset(19.04)
+            make.trailing.equalToSuperview().inset(LayoutConstants.insert30point51)
+            make.top.equalToSuperview().offset(LayoutConstants.offset19poin04)
         }
         
     }
     
     func makeColorView() {
         let viewWhite = UIView()
-        viewWhite.backgroundColor = .white
+            .decorated(with: .backgroundColor(.white))
         let viewGray = UIView()
-        viewGray.backgroundColor = .gray12
+            .decorated(with: .backgroundColor(.gray12))
         let viewBlack = UIView()
-        viewBlack.backgroundColor = .black
+            .decorated(with: .backgroundColor(.black))
 
         [viewWhite, viewGray, viewBlack].forEach { view in
-            view.layer.borderWidth = 2
+            view.layer.borderWidth = LayoutConstants.borderWidth2
             if view == viewWhite {
                 view.layer.borderColor = UIColor.gray12.cgColor
             } else {
                 view.layer.borderColor = view.backgroundColor?.cgColor
             }
-            view.layer.cornerRadius = 10
+            view.layer.cornerRadius = LayoutConstants.corner10
         }
         [viewWhite, viewGray, viewBlack].forEach { colorView.addSubview($0) }
         viewWhite.snp.makeConstraints { make in
             make.leading.top.equalToSuperview()
-            make.height.equalTo(24)
-            make.width.equalTo(32)
+            make.height.equalTo(LayoutConstants.height24)
+            make.width.equalTo(LayoutConstants.width32)
         }
         viewGray.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalTo(viewWhite.snp.trailing).offset(15)
-            make.height.equalTo(24)
-            make.width.equalTo(32)
+            make.leading.equalTo(viewWhite.snp.trailing).offset(LayoutConstants.offset15)
+            make.height.equalTo(viewWhite.snp.height)
+            make.width.equalTo(viewWhite.snp.width)
         }
         viewBlack.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalTo(viewGray.snp.trailing).offset(15)
-            make.height.equalTo(24)
-            make.width.equalTo(32)
+            make.leading.equalTo(viewGray.snp.trailing).offset(LayoutConstants.offset15)
+            make.height.equalTo(viewWhite.snp.height)
+            make.width.equalTo(viewWhite.snp.width)
         }
         
     }
     
     func makeReitingView() {
-        let star = UIImageView().decorated(with: .image(UIImage(systemName: "star", withConfiguration: UIImage.SymbolConfiguration(pointSize: 9.5, weight: .semibold))))
-        star.decorated(with: .tinColor(.yelow1))
+        let star = UIImageView()
+            .decorated(with: .image(Constants.starImage))
+            .decorated(with: .tinColor(.yelow1))
         let price = UILabel()
             .decorated(with: .font(.sf(.caption7([.bold]))))
-            .decorated(with: .text("3.9"))
+            .decorated(with: .text(Constants.sumReviews))
             .decorated(with: .textColor(.black))
         let review = UILabel()
             .decorated(with: .font(.sf(.caption8([.bold]))))
-            .decorated(with: .text("(4000 reviews)"))
+            .decorated(with: .text(Constants.reviews))
             .decorated(with: .textColor(.gray3))
         
         reitingView.addSubview(star)
@@ -262,45 +270,41 @@ private extension Page2ViewController {
         }
         reitingView.addSubview(price)
         price.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(1)
-            make.leading.equalTo(star.snp.trailing).offset(3.41)
+            make.top.equalToSuperview().offset(LayoutConstants.offset1)
+            make.leading.equalTo(star.snp.trailing).offset(LayoutConstants.offset3poin41)
         }
         reitingView.addSubview(review)
         review.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(1)
-            make.leading.equalTo(price.snp.trailing).offset(3.72)
+            make.top.equalToSuperview().offset(LayoutConstants.offset1)
+            make.leading.equalTo(price.snp.trailing).offset(LayoutConstants.offset3poin72)
         }
     }
     
     func makeLikeAndSomthingView() {
         let like = UIImageView()
-            .decorated(with: .image(UIImage(systemName: "heart",
-                                            withConfiguration: UIImage.SymbolConfiguration(pointSize: 15, weight: .bold))))
+            .decorated(with: .image(Constants.likeImage))
+            .decorated(with: .tinColor(.blue3))
         let another = UIImageView()
-            .decorated(with: .image(UIImage(systemName: "scale.3d",
-                                            withConfiguration: UIImage.SymbolConfiguration(pointSize: 15, weight: .bold))))
-        
-        another.decorated(with: .tinColor(.blue3))
-        like.decorated(with: .tinColor(.blue3))
-        
+            .decorated(with: .image(Constants.anotherImage))
+            .decorated(with: .tinColor(.blue3))
         let lineView = UIView()
-        lineView.backgroundColor = .blue3
+            .decorated(with: .backgroundColor(.blue3))
         
         likeView.addSubview(like)
         like.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(17)
+            make.top.equalToSuperview().offset(LayoutConstants.offset17)
             make.centerX.equalToSuperview()
         }
         likeView.addSubview(lineView)
         lineView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(46.5)
-            make.height.equalTo(1)
-            make.width.equalTo(11.18)
+            make.top.equalToSuperview().offset(LayoutConstants.offset46poin5)
+            make.height.equalTo(LayoutConstants.offset1)
+            make.width.equalTo(LayoutConstants.width11poin18)
             make.centerX.equalToSuperview()
         }
         likeView.addSubview(another)
         another.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(17)
+            make.bottom.equalToSuperview().inset(LayoutConstants.offset17)
             make.centerX.equalToSuperview()
         }
     }
@@ -314,6 +318,21 @@ private extension Page2ViewController {
     enum Constants {
         static let descriptionLabel = "Features waterproof, fire, air resistant shoes. all changed when the country of fire attacked"
         static let letcolorLabel = "Color:"
+        static let nameLabel = "New balance Sneakers"
+        static let mainImageViewImage = UIImage(named: "bigPhoto")
+        static let priceLabel = "$ 22,50"
+        static let titleQuanity = "Quanity:"
+        static let addToCart = "ADD TO CART"
+        static let descriptionAdd = "#2,500"
+        static let reviews = "(4000 reviews)"
+        static let sumReviews = "3.9"
+        static let minus = UIImage(systemName: "minus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 9, weight: .bold))
+        static let plus = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 9, weight: .bold))
+        static let anotherImage = UIImage(systemName: "scale.3d",
+                                        withConfiguration: UIImage.SymbolConfiguration(pointSize: 15, weight: .bold))
+        static let likeImage = UIImage(systemName: "heart",
+                                        withConfiguration: UIImage.SymbolConfiguration(pointSize: 15, weight: .bold))
+        static let starImage = UIImage(systemName: "star", withConfiguration: UIImage.SymbolConfiguration(pointSize: 9.5, weight: .semibold))
     }
     
 }

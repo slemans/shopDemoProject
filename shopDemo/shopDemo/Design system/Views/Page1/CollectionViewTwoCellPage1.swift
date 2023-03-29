@@ -23,7 +23,7 @@ final class CollectionViewTwoCellPage1: UICollectionViewCell {
     private let prise = UILabel()
         .decorated(with: .alignment(.left))
         .decorated(with: .textColor(.white))
-        .decorated(with: .font(.sf(.caption6poin5([.semibold]))))
+        .decorated(with: .font(.sf(.caption8([.semibold]))))
     private let categoryView = UIView()
     private let categoryLabel = UILabel()
         .decorated(with: .textColor(.black))

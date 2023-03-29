@@ -5,32 +5,34 @@
 //  Created by Павел on 16.03.23.
 //
 
-import Foundation
+import UIKit
 
-protocol Page1Navigation: AnyObject {
-
-    func goToProfilePage()
-    func goToPage2()
-    
+protocol Page1ViewModelDelegat {
+    func goToProfile()
+    func openPage2(product: Page2ViewModel.Model)
 }
 
-class Page1ViewModel {
+class Page1ViewModel: Page1ViewModelDelegat {
     
-    weak var navigation: Page1Navigation!
-    private let networkServise: ShopThingsService
+    weak var coordinatorDelegate: Page1ViewModelCoordinatorDelegate?
+    var networkServise: ShopThingsService?
+    
     private var arrayColectionLatest: [CollectionViewTwoPage1.Model] = []
     private var arrayColectionFlash: [CollectionViewThreePage1.Model] = []
+    private var arrayColectionCategory: [CollectionViewPage1.Model] = []
+    private var arrayColectionBrand: [CollectionViewTwoPage1.Model] = []
     
-    var getArrayColectionFlash: [CollectionViewThreePage1.Model] {
+    var arrayFlash: [CollectionViewThreePage1.Model] {
         arrayColectionFlash
     }
-    var getArrayColectionLatest: [CollectionViewTwoPage1.Model] {
+    var arrayLatest: [CollectionViewTwoPage1.Model] {
         arrayColectionLatest
     }
-
-    init(nav: Page1Navigation) {
-        self.navigation = nav
-        self.networkServise = ShopThingsService.shared
+    var arrayCategory: [CollectionViewPage1.Model] {
+        arrayColectionCategory
+    }
+    var arrayBrand: [CollectionViewTwoPage1.Model] {
+        arrayColectionBrand
     }
     
     func getAllProduct(completion: @escaping () -> Void) {
@@ -44,13 +46,21 @@ class Page1ViewModel {
         getFlashSaleShop {
             group.leave()
         }
+        group.enter()
+        getBrands {
+            group.leave()
+        }
+        group.enter()
+        getCategory {
+            group.leave()
+        }
         group.notify(queue: .main) {
             completion()
         }
     }
     
     func goToProfile() {
-        navigation.goToProfilePage()
+        coordinatorDelegate?.goToProfile()
     }
     
     func sendTextTextField(text: String) {
@@ -58,8 +68,7 @@ class Page1ViewModel {
     }
     
     func openPage2(product: Page2ViewModel.Model) {
-        // send model
-        navigation.goToPage2()
+        coordinatorDelegate?.goToPage2()
     }
     
 }
@@ -67,7 +76,7 @@ class Page1ViewModel {
 private extension Page1ViewModel{
     
     func getLatestShop(completion: @escaping () -> Void) {
-        networkServise.getLatest { result in
+        networkServise?.getLatest { result in
             switch result {
             case .success(let latest):
                 self.arrayColectionLatest = latest.latest.map { $0.makeLatestModel() }
@@ -78,8 +87,38 @@ private extension Page1ViewModel{
         }
     }
     
+    func getCategory(completion: @escaping () -> Void) {
+        arrayColectionCategory = [
+            CollectionViewPage1.Model(
+                name: "Phones",
+                image: UIImage(named: "categoryNew1")
+            ),
+            CollectionViewPage1.Model(
+                name: "Headphones",
+                image: UIImage(named: "categoryNew2")
+            ),
+            CollectionViewPage1.Model(
+                name: "Games",
+                image: UIImage(named: "categoryNew3")
+            ),
+            CollectionViewPage1.Model(
+                name: "Cars",
+                image: UIImage(named: "categoryNew4")
+            ),
+            CollectionViewPage1.Model(
+                name: "Furniture",
+                image: UIImage(named: "categoryNew5")
+            ),
+            CollectionViewPage1.Model(
+                name: "kids",
+                image: UIImage(named: "categoryNew6")
+            )
+        ]
+        completion()
+    }
+    
     func getFlashSaleShop(completion: @escaping () -> Void) {
-        networkServise.getFlashSale { result in
+        networkServise?.getFlashSale { result in
             switch result {
             case .success(let flashSale):
                 self.arrayColectionFlash = flashSale.flashSale.map {$0.makeFlashModel() }
@@ -88,6 +127,18 @@ private extension Page1ViewModel{
                 break
             }
         }
+    }
+    
+    func getBrands(completion: @escaping () -> Void) {
+        arrayColectionBrand = (1...10).map { _ in
+            return CollectionViewTwoPage1.Model(
+                name: "Samsung S10",
+                image: "ps5",
+                category: .game,
+                prise: "$ 180.0000"
+            )
+        }
+        completion()
     }
     
 }

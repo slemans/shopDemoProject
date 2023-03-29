@@ -46,6 +46,7 @@ final class CollectionViewPage1: UIView {
     
     func setup(with actions: [CollectionViewPage1.Model]) {
         self.actions = actions
+        collectionView.reloadData()
     }
     
 }

@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController {
         .decorated(with: .backgroundColor(.blue1))
         .decorated(with: .titleColor(.white))
         .decorated(with: .font(.sf(.body([.semibold]))))
-        .decorated(with: .cornerRadius(15))
+        .decorated(with: .cornerRadius(LayoutConstants.corner15))
     private let tradeView = CustomView(ofType: .arrow, title: Constants.tradeView)
     private let paymantView = CustomView(ofType: .arrow, title: Constants.paymantView)
     private let balanceView = CustomView(ofType: .summ, title: Constants.balanceView)
@@ -42,8 +42,8 @@ class ProfileViewController: UIViewController {
     private let helpView = CustomView(ofType: .help, title: Constants.helpView)
     private let logOutView = CustomView(ofType: .logOut, title: Constants.logOutView)
 
-    override func loadView() {
-        super.loadView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
         setupView()
         setupPhotoView()
@@ -71,47 +71,47 @@ private extension ProfileViewController {
         [photoView, nameLabel, uploadButton, tradeView, paymantView, balanceView, tradeHistoryView, restoreView, helpView, logOutView].forEach { view.addSubview($0) }
 
         photoView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(96.5)
-            make.height.width.equalTo(77)
+            make.top.equalToSuperview().offset(LayoutConstants.offset96poin5)
+            make.height.width.equalTo(LayoutConstants.width77)
             make.centerX.equalToSuperview()
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(photoView.snp.bottom).offset(19.6)
+            make.top.equalTo(photoView.snp.bottom).offset(LayoutConstants.offset19poin6)
             make.centerX.equalToSuperview()
         }
         uploadButton.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(37.82)
-            make.leading.trailing.equalToSuperview().inset(43)
-            make.height.equalTo(46)
+            make.top.equalTo(nameLabel.snp.bottom).offset(LayoutConstants.offset37poin82)
+            make.leading.trailing.equalToSuperview().inset(LayoutConstants.insert43)
+            make.height.equalTo(LayoutConstants.height46)
         }
         tradeView.snp.makeConstraints { make in
-            make.top.equalTo(uploadButton.snp.bottom).offset(14)
-            make.leading.trailing.equalToSuperview().inset(32)
-            make.height.equalTo(40)
+            make.top.equalTo(uploadButton.snp.bottom).offset(LayoutConstants.offset14)
+            make.leading.trailing.equalToSuperview().inset(LayoutConstants.insert32)
+            make.height.equalTo(LayoutConstants.height40)
         }
         paymantView.snp.makeConstraints { make in
-            make.top.equalTo(tradeView.snp.bottom).offset(25)
+            make.top.equalTo(tradeView.snp.bottom).offset(LayoutConstants.offset25)
             make.leading.trailing.height.equalTo(tradeView)
         }
         balanceView.snp.makeConstraints { make in
-            make.top.equalTo(paymantView.snp.bottom).offset(25)
+            make.top.equalTo(paymantView.snp.bottom).offset(LayoutConstants.offset25)
             make.leading.trailing.height.equalTo(tradeView)
         }
         tradeHistoryView.snp.makeConstraints { make in
-            make.top.equalTo(balanceView.snp.bottom).offset(25)
+            make.top.equalTo(balanceView.snp.bottom).offset(LayoutConstants.offset25)
             make.leading.trailing.height.equalTo(tradeView)
         }
         restoreView.snp.makeConstraints { make in
-            make.top.equalTo(tradeHistoryView.snp.bottom).offset(25)
+            make.top.equalTo(tradeHistoryView.snp.bottom).offset(LayoutConstants.offset25)
             make.leading.trailing.height.equalTo(tradeView)
         }
         helpView.snp.makeConstraints { make in
-            make.top.equalTo(restoreView.snp.bottom).offset(25)
+            make.top.equalTo(restoreView.snp.bottom).offset(LayoutConstants.offset25)
             make.leading.trailing.height.equalTo(tradeView)
         }
         logOutView.snp.makeConstraints { make in
-            make.top.equalTo(helpView.snp.bottom).offset(25)
+            make.top.equalTo(helpView.snp.bottom).offset(LayoutConstants.offset25)
             make.leading.trailing.height.equalTo(tradeView)
         }
 
@@ -121,22 +121,22 @@ private extension ProfileViewController {
         photoView.addSubview(imageProfile)
         imageProfile.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.height.width.equalTo(60)
+            make.height.width.equalTo(LayoutConstants.height60)
             make.centerX.equalToSuperview()
         }
         photoView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageProfile.snp.bottom).offset(8.5)
+            make.top.equalTo(imageProfile.snp.bottom).offset(LayoutConstants.offset8poin5)
             make.centerX.equalToSuperview()
         }
     }
 
     func setupUIElement() {
-        imageProfile.layer.cornerRadius = 60 / 2
-        imageProfile.layer.borderWidth = 1
+        imageProfile.layer.cornerRadius = LayoutConstants.height60 / 2
+        imageProfile.layer.borderWidth = LayoutConstants.borderWidth1
         imageProfile.layer.borderColor = UIColor.borderColor.cgColor
 
-        let imageButton = UIImage(named: "arrowButton")
+        let imageButton = Constants.arrowButton
         uploadButton.setImage(imageButton, for: .normal)
         uploadButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 40)
         uploadButton.semanticContentAttribute = .forceLeftToRight
@@ -179,6 +179,7 @@ private extension ProfileViewController {
         static let restoreView = "Restore Purchase"
         static let helpView = "Help"
         static let logOutView = "Log out"
+        static let arrowButton = UIImage(named: "arrowButton")
     }
 
 }

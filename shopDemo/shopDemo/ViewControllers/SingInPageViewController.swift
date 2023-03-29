@@ -41,7 +41,7 @@ class SingInPageViewController: UIViewController {
         .decorated(with: .backgroundColor(.blue1))
         .decorated(with: .titleColor(.white))
         .decorated(with: .font(.sf(.body([.semibold]))))
-        .decorated(with: .cornerRadius(15))
+        .decorated(with: .cornerRadius(LayoutConstants.corner15))
     private let alreadyLabel = UILabel()
         .decorated(with: .textColor(.gray3))
         .decorated(with: .font(.sf(.caption12())))
@@ -51,12 +51,12 @@ class SingInPageViewController: UIViewController {
         .decorated(with: .title(Constants.logInTitle))
         .decorated(with: .titleColor(.blue2))
     private let googleImageView = UIImageView()
-        .decorated(with: .image(UIImage(named: "google.png")))
+        .decorated(with: .image(Constants.google))
     private let googleLable = UILabel()
         .decorated(with: .text(Constants.googleTitle))
         .decorated(with: .font(.sf(.footnote())))
     private let appleImageView = UIImageView()
-        .decorated(with: .image(UIImage(named: "apple2.png")))
+        .decorated(with: .image(Constants.apple))
     private let appleLable = UILabel()
         .decorated(with: .text(Constants.appleTitle))
         .decorated(with: .font(.sf(.footnote())))
@@ -79,71 +79,71 @@ class SingInPageViewController: UIViewController {
 private extension SingInPageViewController {
     
     func setupView() {
-        view.backgroundColor = .mainColor
-        errorLabel.layer.opacity = 0
-        errorNameLabel.layer.opacity = 0
+        view.decorated(with: .backgroundColor(.mainColor))
+        errorLabel.layer.opacity = LayoutConstants.opacity0
+        errorNameLabel.layer.opacity = LayoutConstants.opacity0
     }
 
     func setupLayout() {
         [titleLabel, firstNameTextField, errorNameLabel, lastNameTextField, emailNameTextField, errorLabel, singInButton, alreadyLabel, logInButton, googleImageView, googleLable, appleImageView, appleLable].forEach { view.addSubview($0) }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(158.71)
+            make.top.equalToSuperview().offset(LayoutConstants.offset158poin71)
             make.centerX.equalToSuperview()
         }
         firstNameTextField.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(77.7)
-            make.height.equalTo(29)
-            make.leading.trailing.equalToSuperview().inset(44)
+            make.top.equalTo(titleLabel.snp.bottom).offset(LayoutConstants.offset77poin7)
+            make.height.equalTo(LayoutConstants.height29)
+            make.leading.trailing.equalToSuperview().inset(LayoutConstants.insert44)
         }
         errorNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(firstNameTextField.snp.bottom).offset(1)
+            make.top.equalTo(firstNameTextField.snp.bottom).offset(LayoutConstants.offset1)
             make.leading.trailing.height.equalTo(firstNameTextField)
         }
         lastNameTextField.snp.makeConstraints { make in
-            make.top.equalTo(firstNameTextField.snp.bottom).offset(35)
+            make.top.equalTo(firstNameTextField.snp.bottom).offset(LayoutConstants.offset35)
             make.leading.trailing.height.equalTo(firstNameTextField)
         }
         emailNameTextField.snp.makeConstraints { make in
-            make.top.equalTo(lastNameTextField.snp.bottom).offset(35)
+            make.top.equalTo(lastNameTextField.snp.bottom).offset(LayoutConstants.offset35)
             make.leading.trailing.height.equalTo(firstNameTextField)
         }
         errorLabel.snp.makeConstraints { make in
-            make.top.equalTo(emailNameTextField.snp.bottom).offset(1)
+            make.top.equalTo(emailNameTextField.snp.bottom).offset(LayoutConstants.offset1)
             make.leading.trailing.height.equalTo(firstNameTextField)
         }
         singInButton.snp.makeConstraints { make in
-            make.top.equalTo(emailNameTextField.snp.bottom).offset(35)
+            make.top.equalTo(emailNameTextField.snp.bottom).offset(LayoutConstants.offset35)
             make.leading.trailing.equalTo(firstNameTextField)
-            make.height.equalTo(46)
+            make.height.equalTo(LayoutConstants.height46)
         }
         alreadyLabel.snp.makeConstraints { make in
-            make.top.equalTo(singInButton.snp.bottom).offset(17.58)
+            make.top.equalTo(singInButton.snp.bottom).offset(LayoutConstants.offset17poin58)
             make.leading.equalTo(firstNameTextField)
         }
         logInButton.snp.makeConstraints { make in
-            make.top.equalTo(singInButton.snp.bottom).offset(11.58)
-            make.leading.equalTo(alreadyLabel.snp.trailing).offset(8.7)
+            make.top.equalTo(singInButton.snp.bottom).offset(LayoutConstants.offset11point58)
+            make.leading.equalTo(alreadyLabel.snp.trailing).offset(LayoutConstants.offset8poin7)
         }
         googleImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(99)
-            make.top.equalTo(singInButton.snp.bottom).offset(74)
-            make.height.equalTo(24.22)
-            make.width.equalTo(23.83)
+            make.leading.equalToSuperview().offset(LayoutConstants.offset99)
+            make.top.equalTo(singInButton.snp.bottom).offset(LayoutConstants.offset74)
+            make.height.equalTo(LayoutConstants.height24poin22)
+            make.width.equalTo(LayoutConstants.width23poin83)
         }
         googleLable.snp.makeConstraints { make in
-            make.leading.equalTo(googleImageView.snp.trailing).offset(11.66)
-            make.top.equalTo(singInButton.snp.bottom).offset(77)
+            make.leading.equalTo(googleImageView.snp.trailing).offset(LayoutConstants.offset11point67)
+            make.top.equalTo(singInButton.snp.bottom).offset(LayoutConstants.offset77)
         }
         appleImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(99)
-            make.top.equalTo(googleImageView.snp.bottom).offset(38)
-            make.height.equalTo(21.87)
-            make.width.equalTo(18.38)
+            make.leading.equalToSuperview().offset(LayoutConstants.offset99)
+            make.top.equalTo(googleImageView.snp.bottom).offset(LayoutConstants.offset38)
+            make.height.equalTo(LayoutConstants.height21poin87)
+            make.width.equalTo(LayoutConstants.width18poin38)
         }
         appleLable.snp.makeConstraints { make in
-            make.leading.equalTo(appleImageView.snp.trailing).offset(14.11)
-            make.top.equalTo(googleImageView.snp.bottom).offset(40.98)
+            make.leading.equalTo(appleImageView.snp.trailing).offset(LayoutConstants.offset14poin11)
+            make.top.equalTo(googleImageView.snp.bottom).offset(LayoutConstants.offset40poin98)
         }
 
     }
@@ -151,12 +151,12 @@ private extension SingInPageViewController {
     func setupButtons() {
         singInButton.addAction(for: .touchUpInside) { [weak self] _ in
             guard let self = self,
-                let name = self.firstNameTextField.text,
+                  let name = self.firstNameTextField.text,
                   let lastName = self.lastNameTextField.text,
                   let email = self.emailNameTextField.text
-                else { return }
+            else { return }
             
-            self.viewModel.checkTextfield(name, email, lastName) { result in
+            self.viewModel.checkTextField(date: (name, lastName, email)) { result in
                 switch result {
                 case (true, false, false):
                     self.checkView(labe: self.errorLabel)
@@ -171,16 +171,16 @@ private extension SingInPageViewController {
         }
         
         logInButton.addAction(for: .touchUpInside) { [weak self] _ in
-            self?.viewModel.goToLogIn()
+            self?.viewModel?.goToLogInPage()
         }
     }
     
     func checkView(labe: UILabel) {
         [errorNameLabel, errorLabel].forEach { label in
             if label == labe {
-                label.layer.opacity = 1
+                label.layer.opacity = LayoutConstants.opacity1
             } else {
-                label.layer.opacity = 0
+                label.layer.opacity = LayoutConstants.opacity0
             }
         }
     }
@@ -212,6 +212,8 @@ private extension SingInPageViewController {
         static let errorLabel = "You need to check email"
         static let errorNameLabel = "That name there is!! You can tap Log in"
         static let errorEmptyNameLabel = "Need write your name"
+        static let google = UIImage(named: "google.png")
+        static let apple = UIImage(named: "apple2.png")
     }
     enum LableTextField: String {
         case firstName = "First name"
